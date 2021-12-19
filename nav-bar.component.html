@@ -1,0 +1,66 @@
+<div class="pt-1">
+    <div class="dropdown">
+        <button style="background-color:#0C7489" class="btn btn-block btn-secondary text-left dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{selectedPoType}}
+        </button>
+        <div *ngIf="orderType != undefined" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div *ngFor="let d of orderType">
+                <a class="dropdown-item btn-block" (click)="getCode(d.code, d.name)">
+                    {{d.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form class="pt-1 form-block">
+        <input class="form-control text-left" #search (input)="getSearchResult(search.value)" type="search" placeholder="Search POS" aria-label="Search">
+    </form>
+</div>
+<div *ngIf="loading" style="margin-top:20vh;height: 80vh; overflow-y: scroll;">
+    <div class="lds-css ng-scope">
+        <div class=" mx-auto lds-rolling">
+            <div></div>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="showError" style="height: 80vh; overflow-y: scroll;width:100%;">
+    <h5>{{message}}</h5>
+</div>
+<div *ngIf="!loading && !showError" class="pt-1" style="height: 80vh; overflow-y: scroll;width:100%;" (scroll)="onScroll($event)">
+    <div *ngFor="let i of purchaseList" class="list-group list-group-flush">
+        <div id="cont">
+
+            <div style="font-size:17px" id="check">
+                <label id="check" style="font-size:12px;float: left;" class="checkbox is-sm `l is-info">
+                    <input id="{{i.purchaseOrderNumber}}" class="purchase font-weight-bold"
+                        (change)="selectPo($event,i.purchaseOrderNumber)" type="checkbox">
+                    {{i.purchaseOrderNumber}}
+                </label>
+            </div>
+            <h5 style="font-size:17px" *ngIf="!hidePercentage" class="text-right text-primary">{{i.percentage}}<small class="text-secondary">%</small></h5>
+            <div *ngIf="!hidePercentage" class="progress md-progress" style="height: 15px;width: 100%">
+
+                <div class="progress-bar" role="progressbar" style="float: left;background-color:#0C7489;width: 50%" [style.width]="i.percentage + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+            <br *ngIf="hidePercentage">
+
+            <div>
+                <div style="font-size:13px;" class="text-left">
+                    {{i.supplier}}
+
+                </div>
+
+                <div style="margin-right:30px" *ngIf="hidePercentage">
+
+                </div>
+            </div>
+
+
+
+            <hr>
+        </div>
+    </div>
+
+</div>

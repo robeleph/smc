@@ -1,0 +1,99 @@
+<div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div id="mheader" class="modal-header" style="background-color:#0C7489; color: white">
+                    <h5 *ngIf="!showPrevious" class="modal-title" id="exampleModalLabel">Parameters for Common</h5>
+                    <h5 *ngIf="showPrevious" class="modal-title" id="exampleModalLabel">Parameter for {{selectedPo[index].purchaseOrderNumber}}</h5>
+                    <button style="color:white" id="generateModalClose" type="button" class="close" data-dismiss="modal" (click)="destroyIt()">
+                    <span class="text-black" aria-hidden="true">×</span>
+                </button>
+                </div>
+                <div class="modal-body" *ngIf="loading">
+                    <div class="lds-css ng-scope">
+                        <div class="mx-auto lds-facebook">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="modal-body" *ngIf="!loading">
+                    <div *ngFor = "let field of generalFields">
+                        <div *ngIf="field.type == 'text'">
+                            <small class="form-text text-muted">{{field.name }}<span *ngIf="field.required"
+                            style="color: red;"> * </span></small>
+                            <div>
+                                <input id="letterNumberInput" type="text" [(ngModel)]="field.Value" name="{{i}}" class="form-control" (change)="fieldChanged(generalFields)">
+                            </div>
+                        </div>
+                        <div *ngIf="field.type == 'date'">
+                            <small class="form-text text-muted">{{field.name}}</small>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="field.Value" name="datei" ngbDatepicker #d="ngbDatepicker" (change)="fieldChanged(generalFields)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="field.type == 'dropdown'">
+                            <small class="form-text text-muted">{{field.name}}<span *ngIf="field.required"
+                                style="color: red;"> * </span> </small>
+                            <select class="form-control" (change)="fieldChanged(generalFields)" [(ngModel)]="field.Value">
+                            <option [value]="option" *ngFor="let option of field.options">{{ option }}</option>
+                        </select>
+                        </div>
+    
+    
+                        <div *ngIf="field.type == 'clausenumber'">
+                            <small class="form-text text-muted">{{field.name}}<span *ngIf="field.required"
+                                style="color: red;"> * </span></small>
+                            <input class="form-group" type="text" [(ngModel)]="c.clauseNumber" name="clauseNo" class="form-control">
+                        </div>
+                        <div *ngIf="field.type == 'clause'">
+                            <small class="form-text text-muted">{{field.name}}<span *ngIf="field.required"
+                                style="color: red;"> * </span></small>
+                            <input class="form-group" type="text" [(ngModel)]="c.clauseText" name="clauseT" class="form-control">
+                        </div>
+    
+                        <div *ngIf="field.type == 'clausenumber'">
+                            <button style="background-color:#0C7489;color: white;" (click)="addClause(c)" type="button" class="btn btn-sm ml-2 mr-2 btn-block mt-2 mb-2">
+                                Add Clause
+                            </button>
+                        </div>
+    
+                        <div *ngIf="field.type=='clausenumber'" class="row">
+                            <div *ngIf="showTable">
+                                <table style="width:480px" class="mx-auto table table-striped table-hover">
+                                    <thead class="thead-bg-secondary">
+                                        <th class="events-table-th">Clause Number</th>
+                                        <th class="events-table-th">Clause Text</th>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr *ngFor="let clause of clauses">
+                                            <td class="events-table-td">{{clause.clauseText}}</td>
+                                            <td class="events-table-td">{{clause.clauseNumber}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="container mt-2">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button *ngIf="showGenerate" [disabled]="!fieldsAreValid" style="background-color:#0C7489;color: white;" class="close" data-dismiss="modal" (click)="formatFields(field)" type="button" data-target="#letterModal" data-toggle="modal" class="btn btn-md ml-2">
+                                Generate Letter
+                            </button>
+                                <button style="background-color:#0C7489;color: white;" *ngIf="showPrevious" (click)="previous()" type="button" class="btn btn-md ml-2">Previous
+                            </button>
+                                <button style="background-color:#0C7489;color: white;" (click)="next()" *ngIf="!showGenerate" [disabled]="!fieldsAreValid" type="button" class="btn btn-md ml-2">Next
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

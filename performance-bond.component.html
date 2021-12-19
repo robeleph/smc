@@ -1,0 +1,106 @@
+
+            <div>
+    
+                <div class="pt-1" style="text-align:left">
+                    <div *ngIf="loader" class="mx-auto">
+                        <div class="lds-css ng-scope">
+                            <div class="mx-auto lds-facebook">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="in-left" *ngIf="!loader">
+                        <div class="form-row bg shadow-sm p-3 ml-1 mb-2 bg-white rounded border">
+                            <input class="col-sm-11 my-1 form-control text-left pr-2" #searchbond
+                                (input)="getSear/chResultforPerformanceBond(searchbond.value)" type="search" type="search"
+                                placeholder="Search POS" aria-label="Search">
+                            <div class="col-sm-1 my-1">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <a (click)="printReport()">
+                                            <img class="rounded" style="width:50px;height:50px;"
+                                                src="https://img.icons8.com/dotty/80/000000/print.png">
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-2 ml-3">
+                                        <a (click)="exportToExcel()">
+                                            <img class="rounded" style="width:50px;height:50px;"
+                                                src="https://img.icons8.com/dotty/80/000000/ms-excel.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid shadow-sm  mb-2 bg-white rounded pt-2 pl-3 border">
+                            <div id="printable">
+                                <table class="table table-sm table-fixed table-striped table-hover">
+                                    <thead class="thead-bg-secondary">
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">No.</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Purchase Order Number</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Reference Number</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">PB Receiving</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Validity of PB</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Name of Bank</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Supplier Name</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Amount</p>
+                                        </th>
+                                        <th class="events-table-th">
+                                            <p id="headTable" class="text-black">Remark</p>
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of performanceBond">
+                                            <td class="events-table-td">
+                                                <small>{{i.No}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.PurchaseOrderNumber}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.ReferenceNumber}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.PBReceiving | date : "mediumDate"}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.ValidityOfPB}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.NameOfBank}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.SupplierName}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.Amount}}</small>
+                                            </td>
+                                            <td class="events-table-td">
+                                                <small>{{i.Remark}}</small>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+    
+  

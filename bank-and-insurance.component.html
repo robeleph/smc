@@ -1,0 +1,111 @@
+<div class="pt-1" style="text-align:left">
+    <div *ngIf="loader" class="mx-auto">
+        <div class="lds-css ng-scope">
+            <div class="mx-auto lds-facebook">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="in-left" *ngIf="!loader">
+
+        <div class="form-row bg shadow-sm p-3 ml-1 mb-2 bg-white rounded border">
+            <input class="col-sm-11 my-1 form-control text-left pr-2" #searchbankandinsurance (input)="searchBankandInsurance(searchbankandinsurance.value)" type="search" placeholder="Search POS" aria-label="Search">
+            <div class="col-sm-1 my-1">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <a (click)="printReport()">
+                            <img class="rounded" style="width:50px;height:50px;" src="https://img.icons8.com/dotty/80/000000/print.png">
+                        </a>
+                    </div>
+                    <div class="col-sm-2 ml-3">
+                        <a (click)="exportToExcel()">
+                            <img class="rounded" style="width:50px;height:50px;" src="https://img.icons8.com/dotty/80/000000/ms-excel.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid shadow-sm mb-2 bg-white rounded pt-2 pl-3 border">
+            <div id="printable">
+
+                <table class="table table-fixed table-striped table-hover">
+                    <thead class="thead-bg-secondary">
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">PO</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">Program</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">Amount</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">Bank Permit No.</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">LC
+                                <label style="font-size:12px;" class="checkbox is-sm `l is-info"><input
+                                                        class="purchase font-weight-bold" (change)="checkCAD($event)" type="checkbox">
+                                                </label>
+                            </p>
+
+                        </th>
+
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">Date of Issue</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">Shipment Date</p>
+                        </th>
+                        <th class="events-table-th">
+                            <p id="headTable" class="text-black">LC/CAD Expiry Date</p>
+                        </th>
+
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let i of bankandInsuranceBond">
+                            <td class="events-table-td">
+                                <small>{{i.PurchaseOrderNumber}}</small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>{{i.FundingSource}}</small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>{{i.AmountCurrency}}</small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>{{i.BankPermitNumber}}</small>
+                            </td>
+
+                            <td class="events-table-td">
+                                <small>{{i.LCorCAD}}</small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>
+                                                    {{i.LCOpeningDate | date : "mediumDate"}}
+                                                </small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>
+                                                    {{i.LatestShipmentDate | date : "mediumDate"}}
+                                                </small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>
+                                                    {{i.LCorCADExpiryDate | date : "mediumDate"}}
+                                                </small>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

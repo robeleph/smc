@@ -1,0 +1,79 @@
+<div class="polead pt-1" style="text-align:left">
+    <div *ngIf="loader" class="mx-auto">
+        <div class="lds-css ng-scope">
+            <div class="mx-auto lds-facebook">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="in-left" *ngIf="!loader">
+        <div class="form-row bg shadow-sm p-3 ml-1 mb-2 bg-white rounded border">
+            <input class="col-sm-11 my-1 form-control text-left pr-2" #search (input)="getSearchResult(search.value)" type="search" placeholder="Search POS" aria-label="Search">
+            <div class="col-sm-1 my-1">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <a (click)="printReport()">
+                            <img class="rounded" style="width:50px;height:50px;" src="https://img.icons8.com/dotty/80/000000/print.png">
+                        </a>
+                    </div>
+                    <div class="col-sm-2 ml-3">
+                        <a (click)="exportToExcel()">
+                            <img class="rounded" style="width:50px;height:50px;" src="https://img.icons8.com/dotty/80/000000/ms-excel.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid shadow-sm ml-1 mb-2 bg-white rounded pt-2 pl-3 border">
+            <div id="printable">
+
+                <table id="table1" class="table table-sm table-striped table-fixed table-hover">
+                    <thead class="thead-bg-secondary">
+                        <th class="events-table-th">Tender No</th>
+                        <th class="events-table-th">PO No.</th>
+                        <th class="events-table-th">Supplier</th>
+                        <th class="events-table-th">Responsible Person</th>
+                        <th class="events-table-th">Donor</th>
+
+                        <th class="events-table-th">FMHACA Approval</th>
+                        <th class="events-table-th">Contract Signing</th>
+                        <th class="events-table-th">Contract Signing by DG</th>
+                        <th class="events-table-th">From PO Date to Contract Transfer</th>
+
+
+
+
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of poLead">
+                            <td class="events-table-td">
+                                <small>{{i.TenderNumber}}</small>
+                            </td>
+                            <td class="events-table-td">
+                                <small>{{i.PurchaseOrderNumber}}</small>
+                            </td>
+                            <td class="events-table-td"><small>{{i.Supplier}}</small></td>
+                            <td class="events-table-td"><small>{{i.ResponsiblePerson}}</small></td>
+
+                            <td class="events-table-td"><small>{{i.FundingSource}}</small></td>
+
+                            <td class="events-table-td"><small>{{i.DaysSpentOnApproval}}</small>
+                            </td>
+                            <td class="events-table-td"><small>{{i.DaysSpentOnContractSigning}}</small></td>
+                            <td class="events-table-td"><small>{{i.DaysSpentOnContractSigningByDG}}</small></td>
+
+                            <td class="events-table-td"><small>{{i.TotalDaysSpentFromPODateToContractTransfer}}</small></td>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

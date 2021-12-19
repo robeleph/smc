@@ -1,0 +1,148 @@
+  <div>
+
+          
+         
+            <div class="modal-header" style="background-color:#0C7489; color:white">
+                <h5 class="modal-title" id="cadextension">Edit Event</h5>
+                
+                
+              </div>
+      
+
+            <div class="modal-body">
+                <div>
+                    <div *ngIf="!isCAD" class="mx-auto">
+                        <small class="form-text text-muted">Letter Number</small>
+
+                        <div class="mb-2 input-group">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="letterNumber">
+                        </div>
+                        <small class="form-text text-muted">LC Event date</small>
+                        <div class="input-group mb-2">
+                            <input placeholder="{{lcEventDate}}" required class="form-control form-control-sm"
+                                [(ngModel)]="lcEventDate" name="dp" ngbDatepicker #dq="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="dq.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <small class="form-text text-muted">LC Number</small>
+                            </div>
+                            <div class="col">
+                                <small class="form-text text-muted">LC Bank Permit Number</small>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <input type="text" class="form-control  mb-2 form-control" [(ngModel)]="lcNumber">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control  mb-2 form-control"
+                                    [(ngModel)]="bankPermitNumber">
+                            </div>
+                        </div>
+
+                        <small class="form-text text-muted">LC Opening date</small>
+
+                        <div class="input-group mb-2">
+                            <input required class="form-control form-control-sm" [(ngModel)]="lcOpeningDate"
+                                placeholder="{{lcOpeningDate}}" name="dp" ngbDatepicker #dd="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">Latest Shipment date</small>
+                        <div class="input-group mb-2">
+                            <input [(ngModel)]="latestShipmentDate" id="ff" required
+                                class="form-control form-control-sm" placeholder="{{latestShipmentDate}}" name="dp"
+                                ngbDatepicker #ddd="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="input-group-append btn btn-outline-secondary calendar"
+                                    (click)="ddd.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">LC Expiry date</small>
+
+                        <div class="input-group mb-2">
+                            <input required class="form-control text-black form-control-sm"
+                                placeholder="{{lcExpiryDate}}" name="dp" [(ngModel)]="lcExpiryDate" ngbDatepicker
+                                #de="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="de.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div *ngIf="isCAD" class="mx-auto">
+                        <small class="form-text text-muted">Event date</small>
+
+                        <div class="input-group mb-2">
+                            <input placeholder="{{lcEventDate}}" [(ngModel)]="lcEventDate" required
+                                class="form-control form-control-sm" name="dp" ngbDatepicker #dq="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="dq.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">CAD Number</small>
+                        <div class="mb-2 form-group">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="cadNumber">
+                        </div>
+                        <small class="form-text text-muted">Bank Permit Number</small>
+                        <div class="mb-2 form-group">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="bankPermitNumber">
+                        </div>
+                        <small class="form-text text-muted">CAD Expiry date</small>
+                        <div class="input-group mb-2">
+                            <input required class="form-control form-control-sm" [(ngModel)]="cadExpiryDate"
+                                placeholder="{{cadExpiryDate}}" name="dp" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                    type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-control mb-2 custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" (click)="addDeleyance()" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">
+                            Add Reason For Delay
+                        </label>
+                    </div>
+                    <div *ngIf="showDeleyance">
+                        <div *ngFor="let reason of selectedDeleyanceReason" class="input-group mb-2 label label-default chips">
+                            {{ reason }}
+                            <i class="fa fa-times-circle pointer" id="{{reason}}" (click)="close(reason)"></i>
+                        </div>
+                        <small class="form-text text-muted">Select Reason</small>
+                        <div class="input-group mt-2 mb-2">
+                            <select [(ngModel)]="deleyanceReason" (change)="addSelectedDeleyance($event.target.value)" class="form-control" id="exampleFormControlSelect1">
+                                <option value=""></option>
+                                <option [value]="option" *ngFor="let option of deleyanceReasons">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer for lc -->
+            <div class="modal-footer">
+                <div *ngIf="RPBND">
+                    <div class="lds-css ng-scope">
+                        <div class="mx-auto lds-loaderbook">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button style="background-color:#0C7489; color: white" type="button" class="btn btn-sm"
+                    (click)="saveEventUnique()">
+                    <i class="fa fa-2x fa-save" aria-hidden="true"></i>
+                </button>
+            </div>
+
+        </div>

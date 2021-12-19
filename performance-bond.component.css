@@ -1,0 +1,111 @@
+h3 {
+    vertical-align: middle;
+}
+
+#panel-heading {
+    background: #0C7489;
+}
+
+small {
+    text-align: left;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+h6 {
+    text-align: left;
+}
+
+h6>a {
+    color: black;
+}
+
+.holderList {
+    width: 100%;
+    display: block;
+}
+
+details,
+summary {
+    display: block;
+    width: 100%;
+    border: none;
+    text-decoration-line: none;
+    text-decoration: none;
+}
+
+button.calendar,
+button.calendar:active {
+    width: 2.75rem;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: center;
+}
+
+h3 {
+    color: #0C7489;
+}
+
+.blink {
+    line-height: 75px;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: black;
+    animation: blink 2s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+thead th {
+    font-size: 1.1em;
+}
+
+td {
+    font-size: 1.0em
+}
+
+.table-fixed {
+    width: 100%;
+}
+
+
+/*This will work on every browser but Chrome Browser*/
+
+.table-fixed thead {
+    position: sticky;
+    width: 100%;
+    position: -webkit-sticky;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    top: 0;
+    z-index: 999;
+    background-color: #0C7489;
+    color: #fff;
+}
+
+
+/*This will work on every browser*/
+
+.table-fixed thead th {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #0C7489;
+    color: #fff;
+}

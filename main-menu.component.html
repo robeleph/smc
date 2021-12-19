@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+
+<div class="container p-5">
+    <div class="row m-5">
+        <div *ngFor="let i of eventMenus" class="col-md-6" >
+            <div class="custom-column pr-4 pl-4">
+                <div class="pt-5 custom-column-content">
+                    <ul class="list-group">
+                        <li routerLink="/{{i}}" class="list-group-item" style="height:105px">
+                            <h3 style="margin-top:20px"> {{i}}</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="pr-4 pl-4 custom-column">
+                <div class="pt-5 custom-column-content">
+                    <ul class="list-group">
+                        <li routerLink="/statusreport/poleadtime" class="list-group-item" style="height:105px">
+                            <h3 style="margin-top:20px"> Reports</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<router-outlet></router-outlet>

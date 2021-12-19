@@ -1,0 +1,13 @@
+h3 {
+    color: white;
+}
+
+.list-group-item {
+    background-color: #0C7489;
+    box-shadow: 0 4px 4px 0 rgba(192, 169, 169, 0.2);
+    cursor: pointer;
+}
+
+#mainNav {
+    background-color: #0C7489;
+}
