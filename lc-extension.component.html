@@ -1,0 +1,59 @@
+<div>
+
+     
+        <div class="modal-header" style="background-color:#0C7489; color:white">
+            <h5 class="modal-title" id="cadextension">Edit LC Event</h5>
+            
+          </div>
+  
+
+
+        <div class="modal-body">
+            <div>
+
+                <div class="mx-auto">
+                    <small class="form-text text-muted">Letter Number</small>
+
+                    <div class="mb-2 form-group">
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="letterNumber"
+                            placeholder="{{letterNumber}}">
+                    </div>
+                    <small class="form-text text-muted">Letter Date</small>
+                    <div class="input-group mb-2">
+                        <input required class="form-control form-control-sm" [(ngModel)]="lcEventDate"
+                            placeholder="{{lcEventDate}}" name="dp" ngbDatepicker #fdd="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="fdd.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="custom-control mb-2 custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" (click)="lcExtension($event)"
+                            id="lcevne">
+                        <label class="custom-control-label" for="lcevne">
+                            Add LC Extension
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer for lc -->
+        <div class="modal-footer">
+            <div *ngIf="RPBND">
+                <div class="lds-css ng-scope">
+                    <div class="mx-auto lds-loaderbook">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <button style="background-color:#0C7489; color: white" type="button" class="btn btn-sm"
+                (click)="saveEventUnique()">
+                <i class="fa fa-2x fa-save" aria-hidden="true"></i>
+            </button>
+        </div>
+
+    </div>
+

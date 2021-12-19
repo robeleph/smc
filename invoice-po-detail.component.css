@@ -1,0 +1,29 @@
+.blink {
+    line-height: 50px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+th {
+    font-size: 1.2em;
+}
+
+td {
+    font-size: 0.8em;
+}
+
+i,
+.h5,
+.h4 {
+    color: #0C7489;
+}
